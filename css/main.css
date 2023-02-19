@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+}
+
+footer {
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  background-color: azure;
+  /* height: 40vh; */
+}
+
+.secret-container {
+  flex: auto;
+}
+
+.client-container {
+  flex: auto;
+}
+
+.button-container {
+  flex: content;
+}
+
+.datetime {
+  margin: 0 0 0 10;
+  padding: 0 0 0 10;
+}
