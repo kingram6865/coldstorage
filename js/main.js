@@ -44,8 +44,12 @@ function buildPage() {
       state: `${state}`
     }
 
-    let results = await axios.get(`https://www.bungie.net/en/OAuth/Authorize?client_id=${clientId}&response_type=code&state=${state}`)
-    console.log(results.data)
+    try {
+      let results = await axios.get(`https://www.bungie.net/en/OAuth/Authorize?client_id=${clientId}&response_type=code&state=${state}`)
+      console.log(results.data)
+    } catch (err) {
+      console.log(err)
+    }
 
     alert(`Client ID: ${clientId}, State: ${state}`)
   })
