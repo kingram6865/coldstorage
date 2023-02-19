@@ -2,7 +2,7 @@ document.getElementsByClassName('datetime')[0].innerHTML = `&copy; sdl.org ${new
 
 // console.log(document.getElementsByClassName('datetime')[0])
 
-document.getElementsByClassName('main')[0].innerHTML = window.URL
+document.getElementsByClassName('main')[0].innerHTML = `<h2>${window.location.href.split('?')[1].split('&')[0].split('=')[1]}</h2>`
 
 
 function buildPage() {
