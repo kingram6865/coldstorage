@@ -67,4 +67,4 @@ function refreshToken() {
 
 }
 
-// buildPage()
+buildPage()
