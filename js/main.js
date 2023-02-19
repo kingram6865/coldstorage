@@ -1,9 +1,18 @@
+const docReferrer = document.createElement('div')
+const apiCode = document.createElement('div')
+
+docReferrer.className = 'was-referred'
+apiCode.className = "api-code"
+
 document.getElementsByClassName('datetime')[0].innerHTML = `&copy; sdl.org ${new Date().getFullYear()}`
 
-// console.log(document.getElementsByClassName('datetime')[0])
-
-document.getElementsByClassName('main')[0].innerHTML = `<h2>${window.location.href.split('?')[1].split('&')[0].split('=')[1]}</h2>`
-
+// console.log(document.referrer)
+if (document.referrer) {
+  docReferrer.innerText = document.referrer
+  apiCode.innerHTML = `<h2>${window.location.href.split('?')[1].split('&')[0].split('=')[1]}</h2>`
+  document.getElementsByClassName('main')[0].appendChild(docReferrer)
+  document.getElementsByClassName('main')[0].appendChild(apiCode)
+}
 
 function buildPage() {
   const destination = document.getElementsByClassName('main')[0]
@@ -12,59 +21,27 @@ function buildPage() {
   const buttonDestination = document.getElementsByClassName('button-container')[0]
 
   const button = document.createElement('button')
-  const authSecret = document.createElement('input')
   const authClient = document.createElement('input')
-  const secretLabel = document.createElement('label')
   const clientLabel = document.createElement('label')
 
   button.className = 'bungie-auth'
   button.textContent = 'Get Authorization'
 
-  authSecret.size = '35'
   authClient.size = '35'
-
-  authSecret.name = 'secret'
   authClient.name = 'client'
-
-  authSecret.id = 'secret'
   authClient.id = 'client'
-
-  authSecret.type = 'text'
   authClient.type = 'text'
 
-  secretLabel.for = 'secret'
-  secretLabel.textContent = "API Key:"
   clientLabel.for = 'client'
-  clientLabel.textContent = 'OAuth Client ID:'
+  clientLabel.textContent = 'Portal Client ID:'
 
   button.addEventListener('click', async (evt) => {
     let clientId = document.getElementById('client').value
-    let apiKey = document.getElementById('secret').value
     let state = stateString(24)
-
-    const authRequest = {
-      response_type: 'code',
-      client_id: `${clientId}`,
-      state: `${state}`
-    }
-
-    const apiHeaders = {
-      headers: {
-        "X-API-Key": `${apiKey}`
-      }
-    }
-
-    try {
-      let results = await axios.get(`https://www.bungie.net/en/OAuth/Authorize?client_id=${clientId}&response_type=code&state=${state}`)
-      console.log(results.data)
-    } catch (err) {
-      console.log(err)
-    }
-
-    alert(`Client ID: ${clientId}, State: ${state}`)
+    window.location = `https://www.bungie.net/en/OAuth/Authorize?client_id=${clientId}&response_type=code&state=${state}`
   })
 
-  const mainComponents = [clientLabel, authClient, secretLabel, authSecret, button]
+  const mainComponents = [clientLabel, authClient, button]
   
   mainComponents.forEach(component => {
     destination.appendChild(component)
