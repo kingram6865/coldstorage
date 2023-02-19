@@ -2,6 +2,9 @@ document.getElementsByClassName('datetime')[0].innerHTML = `&copy; sdl.org ${new
 
 // console.log(document.getElementsByClassName('datetime')[0])
 
+document.getElementsByClassName('main')[0].innerHTML = window.URL
+
+
 function buildPage() {
   const destination = document.getElementsByClassName('main')[0]
   const input1destination = document.getElementsByClassName('client-container')[0]
@@ -30,18 +33,25 @@ function buildPage() {
   authClient.type = 'text'
 
   secretLabel.for = 'secret'
-  secretLabel.textContent = "Token:"
+  secretLabel.textContent = "API Key:"
   clientLabel.for = 'client'
-  clientLabel.textContent = 'ID:'
+  clientLabel.textContent = 'OAuth Client ID:'
 
   button.addEventListener('click', async (evt) => {
     let clientId = document.getElementById('client').value
+    let apiKey = document.getElementById('secret').value
     let state = stateString(24)
 
     const authRequest = {
       response_type: 'code',
       client_id: `${clientId}`,
       state: `${state}`
+    }
+
+    const apiHeaders = {
+      headers: {
+        "X-API-Key": `${apiKey}`
+      }
     }
 
     try {
@@ -54,8 +64,8 @@ function buildPage() {
     alert(`Client ID: ${clientId}, State: ${state}`)
   })
 
-  const mainComponents = [secretLabel, authSecret, clientLabel, authClient, button]
-  // destination.appendChild(secretLabel)
+  const mainComponents = [clientLabel, authClient, secretLabel, authSecret, button]
+  
   mainComponents.forEach(component => {
     destination.appendChild(component)
   })
@@ -80,4 +90,4 @@ function refreshToken() {
 
 }
 
-buildPage()
+// buildPage()
