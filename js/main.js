@@ -37,7 +37,7 @@ function buildPage() {
 
   button.addEventListener('click', async (evt) => {
     // let clientId = document.getElementById('client').value
-    let clientId = '40364'
+    let clientId = 40364
     let state = stateString(24)
     window.location = `https://www.bungie.net/en/OAuth/Authorize?client_id=${clientId}&response_type=code&state=${state}`
   })
