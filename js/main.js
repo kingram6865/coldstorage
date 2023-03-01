@@ -36,7 +36,7 @@ function buildPage() {
   clientLabel.textContent = 'Portal Client ID:'
 
   button.addEventListener('click', async (evt) => {
-    let clientId = document.getElementById('client').value
+    let clientId = document.getElementById('client').value || '40364'
     let state = stateString(24)
     window.location = `https://www.bungie.net/en/OAuth/Authorize?client_id=${clientId}&response_type=code&state=${state}`
   })
@@ -48,7 +48,6 @@ function buildPage() {
   })
 
 }
-
 
 function stateString(strLength) {
   let random_string = ''
