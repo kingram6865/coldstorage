@@ -7,7 +7,7 @@ apiCode.className = "api-code"
 document.getElementsByClassName('datetime')[0].innerHTML = `&copy; sdl.org ${new Date().getFullYear()}`
 
 // console.log("Referred by", document.referrer)
-if (document.referrer === 'https://steamcommunity.com/') {
+if (document.referrer === 'https://steamcommunity.com/' || (apiCode.innerHTML !== '')) {
   docReferrer.innerText = document.referrer
   apiCode.innerHTML = `<h2>${window.location.href.split('?')[1].split('&')[0].split('=')[1]}</h2>`
   document.getElementsByClassName('main')[0].appendChild(docReferrer)
