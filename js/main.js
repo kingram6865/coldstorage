@@ -6,8 +6,8 @@ apiCode.className = "api-code"
 
 document.getElementsByClassName('datetime')[0].innerHTML = `&copy; sdl.org ${new Date().getFullYear()}`
 
-console.log("Referred by", document.referrer)
-if (document.referrer) {
+// console.log("Referred by", document.referrer)
+if (document.referrer === 'https://steamcommunity.com/') {
   docReferrer.innerText = document.referrer
   apiCode.innerHTML = `<h2>${window.location.href.split('?')[1].split('&')[0].split('=')[1]}</h2>`
   document.getElementsByClassName('main')[0].appendChild(docReferrer)
@@ -47,7 +47,7 @@ function buildPage() {
   })
 
   button2.addEventListener('click', (evt) => {
-    // window.location.replace("https://apollo/coldstorage/")
+    window.location.replace("https://sdl.org/coldstorage/")
   })
 
 
