@@ -20,12 +20,16 @@ function buildPage() {
   const input2destination = document.getElementsByClassName('secret-container')[0]
   const buttonDestination = document.getElementsByClassName('button-container')[0]
 
-  const button = document.createElement('button')
+  const button1 = document.createElement('button')
+  const button2 = document.createElement('button')
   const authClient = document.createElement('input')
   const clientLabel = document.createElement('label')
 
-  button.className = 'bungie-auth'
-  button.textContent = 'Get Authorization'
+  button1.className = 'bungie-auth'
+  button1.textContent = 'Get Authorization'
+  button2.className = 'reset'
+  button2.textContent = 'Reset'
+
 
   authClient.size = '35'
   authClient.name = 'client'
@@ -35,14 +39,19 @@ function buildPage() {
   clientLabel.for = 'client'
   clientLabel.textContent = 'Portal Client ID:'
 
-  button.addEventListener('click', async (evt) => {
+  button1.addEventListener('click', async (evt) => {
     // let clientId = document.getElementById('client').value
     let clientId = 40364
     let state = stateString(24)
     window.location = `https://www.bungie.net/en/OAuth/Authorize?client_id=${clientId}&response_type=code&state=${state}`
   })
 
-  const mainComponents = [clientLabel, authClient, button]
+  button2.addEventListener('click', (evt) => {
+    window.location.href = "https://sdl.org/coldstorage/"
+  })
+
+
+  const mainComponents = [clientLabel, authClient, button2]
   
   mainComponents.forEach(component => {
     destination.appendChild(component)
