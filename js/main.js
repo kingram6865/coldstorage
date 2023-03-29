@@ -51,7 +51,7 @@ function buildPage() {
   })
 
 
-  const mainComponents = [clientLabel, authClient, button2]
+  const mainComponents = [clientLabel, authClient, button1, button2]
   
   mainComponents.forEach(component => {
     destination.appendChild(component)
